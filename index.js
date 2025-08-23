@@ -1,46 +1,46 @@
 var numberOfDrums = document.querySelectorAll(".drum").length;
 
-// Add event listener for clicks on all drum buttons
 for (var i = 0; i < numberOfDrums; i++) {
   document.querySelectorAll(".drum")[i].addEventListener("click", function () {
-    var innerLetter = this.innerHTML; // Get the button text (like w, a, s, etc.)
+    var innerLetter = this.innerHTML; 
     makeSound(innerLetter);
+
+    buttonAnimation(innerLetter);
   });
 }
 
-// Add event listener for keyboard presses
 document.addEventListener("keypress", function (event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
-// Function to play sounds based on key/button
 function makeSound(key) {
   switch (key) {
-    case "w":
+    case "a":
       var tom1 = new Audio("sounds/crash.mp3");
       tom1.play();
       break;
-    case "a":
+    case "w":
       var tom2 = new Audio("sounds/kick-bass.mp3");
       tom2.play();
       break;
-    case "s":
+    case "e":
       var tom3 = new Audio("sounds/snare.mp3");
       tom3.play();
       break;
-    case "d":
+    case "l":
       var tom4 = new Audio("sounds/tom-1.mp3");
       tom4.play();
       break;
-    case "j":
+    case "i":
       var tom5 = new Audio("sounds/tom-2.mp3");
       tom5.play();
       break;
-    case "k":
+    case "u":
       var tom6 = new Audio("sounds/tom-3.mp3");
       tom6.play();
       break;
-    case "l":
+    case "g":
       var tom7 = new Audio("sounds/tom-4.mp3");
       tom7.play();
       break;
@@ -51,3 +51,14 @@ function makeSound(key) {
   }
 }
 
+function buttonAnimation(currentKey){
+
+  var activeButton = document.querySelector("."+currentKey);
+
+  activeButton.classList.add("pressed");
+
+  setTimeout(function() {
+
+    activeButton.classList.remove("pressed");}, 100);
+
+}
